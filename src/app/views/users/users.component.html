@@ -1,0 +1,70 @@
+<div *ngIf="isLoading" class="w-100 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="getError" class="w-100 d-flex align-items-center justify-content-center">
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+        <div>
+            Unfortunately, there was a problem with getting your users. Please reload and try again.
+        </div>
+    </div>
+</div>
+<div *ngIf="users.length !== 0" class="container">
+    <div class="row">
+        <div *ngFor="let user of users" class="col-12 col-md-6 col-xl-4 d-flex">
+            <div class="card mb-4 w-100">
+                <div class="card-header text-dark">
+                    {{user.username}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-dark">{{user.name}}</h5>
+                    <h6 class="card-subtitle text-muted">{{user.email}}</h6>
+                    <p class="card-text text-dark">Address:</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Street:</span>
+                        <span>{{user.address.street}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Suite:</span>
+                        <span>{{user.address.suite}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>City:</span>
+                        <span>{{user.address.city}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Zipcode:</span>
+                        <span>{{user.address.zipcode}}</span>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <p class="card-text text-dark">Company:</p>
+                </div>
+                <ul class="list-group list-group-flush px-custom">
+                    <li class="list-group-item row d-flex px-1">
+                        <span class="col-6">Name:</span>
+                        <span class="col-6 text-end">{{user.company.name}}</span>
+                    </li>
+                    <li class="list-group-item row d-flex px-1">
+                        <span class="col-6">Catch phrase:</span>
+                        <span class="col-6 text-end">{{user.company.catchPhrase}}</span>
+                    </li>
+                    <li class="list-group-item row d-flex px-1">
+                        <span class="col-6">Business Services:</span>
+                        <span class="col-6 text-end">{{user.company.bs}}</span>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{user.website}}" class="card-link">Website</a>
+                </div>
+                <div class="card-footer text-dark">
+                    {{user.phone}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

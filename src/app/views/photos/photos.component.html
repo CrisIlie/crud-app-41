@@ -1,0 +1,28 @@
+<div *ngIf="isLoading" class="w-100 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="getError" class="w-100 d-flex align-items-center justify-content-center">
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+        <div>
+            Unfortunately, there was a problem with getting your photos. Please reload and try again.
+        </div>
+    </div>
+</div>
+<div *ngIf="photos.length !== 0" class="container">
+    <div class="row">
+        <div *ngFor="let photo of photos" class="col-12 col-md-6 col-xl-4 d-flex">
+            <div class="card mb-4 w-100">
+                <img src="{{photo.thumbnailUrl}}" class="card-img-top" alt="{{photo.title}}" />
+                <div class="card-body">
+                    <h5 class="card-title text-dark">{{photo.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Album ID: {{photo.albumId}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Photo ID: {{photo.id}}</h6>
+                    <a href="{{photo.url}}" class="card-link" target="_blank">Original photo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="vh-custom d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+    <a [routerLink]="'/'"
+        class="px-3 d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <i class="bi bi-bootstrap-fill me-2"></i>
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a [routerLink]="'/dashboard/albums'" [routerLinkActive]="'active'" class="nav-link text-white"
+                aria-current="page">
+                <i class="bi bi-archive me-2"></i>
+                Albums
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="'/dashboard/comments'" [routerLinkActive]="'active'" class="nav-link text-white">
+                <i class="bi bi-chat-dots-fill me-2"></i>
+                Comments
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="'/dashboard/photos'" [routerLinkActive]="'active'" class="nav-link text-white">
+                <i class="bi bi-images me-2"></i>
+                Photos
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="'/dashboard/posts'" [routerLinkActive]="'active'" class="nav-link text-white">
+                <i class="bi bi-postcard-fill me-2"></i>
+                Posts
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="'/dashboard/todos'" [routerLinkActive]="'active'" class="nav-link text-white">
+                <i class="bi bi-list-check me-2"></i>
+                Todos
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="'/dashboard/users'" [routerLinkActive]="'active'" class="nav-link text-white">
+                <i class="bi bi-people-fill me-2"></i>
+                Users
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/img/undraw_Profile_pic_re_upir.png" alt="" width="32" height="32"
+                class="rounded-circle me-2">
+            <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+    </div>
+</div>

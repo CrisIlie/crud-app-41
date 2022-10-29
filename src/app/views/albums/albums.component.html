@@ -1,0 +1,87 @@
+<div *ngIf="isLoading" class="w-100 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="getError" class="w-100 d-flex align-items-center justify-content-center">
+    <div *ngIf="getError" class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+        <div>
+            Unfortunately, there was a problem with getting your albums. Please reload and try again.
+        </div>
+    </div>
+</div>
+<div *ngIf="albums.length !== 0" class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-4 d-flex">
+            <div class="card mb-4 w-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="formControlInputTitle-new" class="form-label text-dark">New album title</label>
+                        <input type="text" class="form-control" id="formControlInputTitle-new"
+                            placeholder="New album title" #albumTitleInput>
+                        <p *ngIf="incorrectForm" class="text-sm text-danger">
+                            You need to add a title with at least 8 characters.
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formControlInputUserId-new" class="form-label text-dark">User ID for new
+                            album</label>
+                        <input type="number" class="form-control" id="formControlInputUserId-new"
+                            placeholder="User ID for new album" #userIdInput>
+                        <p *ngIf="incorrectForm" class="text-sm text-danger">
+                            You need to add a number greater than 0.
+                        </p>
+                    </div>
+                    <div *ngIf="createNewAlbumError" class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+                        <div>
+                            We could not create your new album. Please reload and try again.
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success"
+                        (click)="createNewAlbum(classParseInt(userIdInput.value), albumTitleInput.value)">
+                        <div *ngIf="isCreatingANewAlbum" class="spinner-border" role="status"
+                            style="width: 1rem; height: 1rem;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        Create new album
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let album of albums" class="col-12 col-md-6 col-xl-4 d-flex">
+            <div class="card mb-4 w-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="formControlInputTitle-{{album.id}}" class="form-label text-dark">Album title</label>
+                        <input type="text" class="form-control" id="formControlInputTitle-{{album.id}}"
+                            placeholder="Album title" value="{{album.title}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formControlInputUserId-{{album.id}}" class="form-label text-dark">User ID</label>
+                        <input type="number" class="form-control" id="formControlInputUserId-{{album.id}}"
+                            placeholder="User ID" value="{{album.userId}}">
+                    </div>
+                    <div *ngIf="this.updateAlbumErrors.includes(album.id)"
+                        class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+                        <div>
+                            We could not update your album. Please reload and try again.
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="updateAlbum(album.id)">
+                        <div *ngIf="this.updatingAlbums.includes(album.id)" class="spinner-border" role="status"
+                            style="width: 1rem; height: 1rem;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        Update Album
+                    </button>
+                    <!-- <h5 class="card-title text-dark">{{album.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Album ID: {{album.id}}</h6>
+                    <p class="card-text text-dark">User ID: {{album.userId}}</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
